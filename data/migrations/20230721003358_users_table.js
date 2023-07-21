@@ -3,12 +3,12 @@
  * @returns { Promise<void> }
  */
 exports.up = function (knex) {
-  return knex.schema.createTable("users", (tbl) => {
-    tbl.increments("userId");
-    tbl.string("username", 128).notNullable();
-    tbl.string("email", 128).notNullable().unique();
-    tbl.string("password", 128).notNullable();
-    tbl.string("role").defaultTo("user");
+  return knex.schema.createTable("users", (t) => {
+    t.increments("userId");
+    t.string("username", 128).notNullable();
+    t.string("email", 128).notNullable().unique();
+    t.string("password", 128).notNullable();
+    t.string("role").defaultTo("user");
   });
 };
 

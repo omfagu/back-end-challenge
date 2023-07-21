@@ -42,8 +42,3 @@ exports.seed = async function (knex) {
   await knex("users").truncate();
   await knex("users").insert(defaultUsers);
 };
-exports.seed = async function (knex) {
-  // Deletes ALL existing entries
-  await knex("table_name").del();
-  await knex("table_name").insert();
-};
