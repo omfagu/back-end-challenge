@@ -10,15 +10,12 @@ const server = express();
 server.use(express.json());
 server.use(cors());
 
-server.get("/", (req, res) => {
-  res.send("<h1>App is working</h1>");
-});
-
 server.use("/api/auth", authRouter);
 server.use("/api/users", usersRouter);
 
 // eslint-disable-next-line no-unused-vars
 server.use((err, req, res, next) => {
+  // eslint-disable-line
   res.status(err.status || 500).json({
     message: err.message,
     stack: err.stack,
