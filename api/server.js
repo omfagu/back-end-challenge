@@ -10,6 +10,10 @@ const server = express();
 server.use(express.json());
 server.use(cors());
 
+server.get("/", (req, res) => {
+  res.send("<h1>app working</h1>");
+});
+
 server.use("/api/auth", authRouter);
 server.use("/api/users", usersRouter);
 

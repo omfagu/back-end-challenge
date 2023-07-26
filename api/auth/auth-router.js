@@ -34,9 +34,9 @@ router.post("/login", usernameVarmi, async (req, res, next) => {
     };
 
     const token = jwt.sign(payload, JWT_SECRET, options);
-    res.json({ message: `${user.username} geri geldi!`, token: token });
+    res.json({ message: `Hos Geldin!${user.username} `, token: token });
   } else {
-    next({ status: 401, message: "Gecersiz kriter" });
+    next({ status: 401, message: "Lutfen Uye Olunuz" });
   }
 });
 
