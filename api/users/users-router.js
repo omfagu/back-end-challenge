@@ -1,8 +1,8 @@
 const router = require("express").Router();
 const Users = require("./users-model.js");
-const { sinirli, sadece } = require("../auth/auth-middleware.js");
+const { bounded, adminValid } = require("../auth/auth-middleware.js");
 
-router.get("/", sinirli, (req, res, next) => {
+router.get("/", bounded, (req, res, next) => {
   Users.bul()
     .then((users) => {
       res.json(users);
@@ -10,7 +10,7 @@ router.get("/", sinirli, (req, res, next) => {
     .catch(next);
 });
 
-router.get("/:user_id", sinirli, sadece("admin"), (req, res, next) => {
+router.get("/:user_id", bounded, adminValid("admin"), (req, res, next) => {
   Users.idyeGoreBul(req.params.user_id)
     .then((user) => {
       res.json(user);

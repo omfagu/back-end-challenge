@@ -1,42 +1,12 @@
 const db = require("../../data/db-config.js");
 
 function bul() {
-  /**
-    2 tabloyu birleştirmeniz lazım (join)
-    Tüm kullanıcılar DİZİSİNİ çözümlemeli
-
-    [
-      {
-        "user_id": 1,
-        "username": "bob",
-        "role_name": "admin"
-      },
-      {
-        "user_id": 2,
-        "username": "sue",
-        "role_name": "instructor"
-      }
-    ]
-   */
   return db("users as u")
     .select("u.user_id", "u.username", "r.role_name as role_name")
     .leftJoin("roles as r", "u.role_id", "r.role_id");
 }
 
 function goreBul(filtre) {
-  /**
-    2 tabloyu birleştirmeniz gerekiyor
-    Filtreyle eşleşen kullanıcıları içeren DİZİYİ çözümlemeli
-
-    [
-      {
-        "user_id": 1,
-        "username": "bob",
-        "password": "$2a$10$dFwWjD8hi8K2I9/Y65MWi.WU0qn9eAVaiBoRSShTvuJVGw8XpsCiq",
-        "role_name": "admin",
-      }
-    ]
-   */
   return db("users as u")
     .select("u.user_id", "u.username", "u.password", "r.role_name as role_name")
     .leftJoin("roles as r", "u.role_id", "r.role_id")
@@ -44,16 +14,6 @@ function goreBul(filtre) {
 }
 
 function idyeGoreBul(user_id) {
-  /**
-    2 tabloyu birleştirmeniz gerekiyor
-    Verilen id li kullanıcıyı çözümlemeli
-
-    {
-      "user_id": 2,
-      "username": "sue",
-      "role_name": "instructor"
-    }
-   */
   return db("users as u")
     .select("u.user_id", "u.username", "r.role_name as role_name")
     .leftJoin("roles as r", "u.role_id", "r.role_id")
